@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
+  <Dimension name="time" t="1"/>
+  <Dimension name="au"/>
+  <ComponentType name="rww">
+    <Parameter dimension="au" name="w"/>
+    <Parameter dimension="au" name="io"/>
+    <Constant name="a" value="au"/>
+    <Constant name="b" value="au"/>
+    <Constant name="d" value="au"/>
+    <Constant name="g" value="au"/>
+    <Constant name="ts" value="au"/>
+    <Constant name="J" value="au"/>
+    <Constant name="w" value="au"/>
+    <Constant name="io" value="au"/>
+    <Exposure dimension="au" name="S"/>
+    <Dynamics>
+      <StateVariable dimension="au" exposure="S" name="S"/>
+      <DerivedVariable name="x" value="w * J * S + io + J * c"/>
+      <DerivedVariable name="h" value="(a * x - b) / (1 - exp(-d*(a*x - b)))"/>
+      <TimeDerivative value="- (S / ts) + (1 - S) * h * g" variable="S"/>
+    </Dynamics>
+  </ComponentType>
+</Lems>

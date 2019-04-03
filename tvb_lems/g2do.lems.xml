@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
+  <Dimension name="time" t="1"/>
+  <Dimension name="au"/>
+  <ComponentType name="g2do">
+    <Parameter dimension="au" name="a"/>
+    <Constant name="tau" value="au"/>
+    <Constant name="I" value="au"/>
+    <Constant name="a" value="au"/>
+    <Constant name="b" value="au"/>
+    <Constant name="c" value="au"/>
+    <Constant name="d" value="au"/>
+    <Constant name="e" value="au"/>
+    <Constant name="f" value="au"/>
+    <Constant name="g" value="au"/>
+    <Constant name="alpha" value="au"/>
+    <Constant name="beta" value="au"/>
+    <Constant name="gamma" value="au"/>
+    <Exposure dimension="au" name="W"/>
+    <Exposure dimension="au" name="V"/>
+    <Dynamics>
+      <StateVariable dimension="au" exposure="W" name="W"/>
+      <StateVariable dimension="au" exposure="V" name="V"/>
+      <TimeDerivative value="d * tau * (alpha*W - f*V^3 + e*V^2 + g*V + gamma*I + gamma*c_0)" variable="W"/>
+      <TimeDerivative value="d * (a + b*V + c*V^2 - beta*W) / tau" variable="V"/>
+    </Dynamics>
+  </ComponentType>
+</Lems>

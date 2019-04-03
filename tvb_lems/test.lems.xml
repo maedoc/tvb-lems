@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
+  <Dimension name="time" t="1"/>
+  <Dimension name="au"/>
+  <ComponentType name="test">
+    <Parameter dimension="au" name="a"/>
+    <Parameter dimension="au" name="b"/>
+    <Parameter dimension="au" name="c"/>
+    <Constant name="d" value="au"/>
+    <Constant name="e" value="au"/>
+    <Constant name="a" value="au"/>
+    <Constant name="b" value="au"/>
+    <Constant name="c" value="au"/>
+    <Exposure dimension="au" name="y1"/>
+    <Dynamics>
+      <StateVariable dimension="au" exposure="y1" name="y1"/>
+      <StateVariable dimension="au" exposure="y2" name="y2"/>
+      <DerivedVariable name="y1_3" value="y1 * y1 * y1"/>
+      <TimeDerivative value="(y1 - y1_3/3 + y2 + e)*b" variable="y1"/>
+      <TimeDerivative value="(a - y1 + i1 + d)/b" variable="y2"/>
+    </Dynamics>
+  </ComponentType>
+</Lems>

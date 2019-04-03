@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
+  <Dimension name="time" t="1"/>
+  <Dimension name="au"/>
+  <ComponentType name="kuramoto">
+    <Parameter dimension="au" name="omega"/>
+    <Constant name="omega" value="au"/>
+    <Exposure dimension="au" name="sin(theta)"/>
+    <Dynamics>
+      <StateVariable dimension="au" exposure="theta" name="theta"/>
+      <TimeDerivative value="omega + I" variable="theta"/>
+    </Dynamics>
+  </ComponentType>
+</Lems>
