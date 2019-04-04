@@ -1,33 +1,31 @@
 """Source of model components used to generate LEMS files (until LEMS files are considered authoritative).
 """
 
-from typing import List, Tuple, Dict, Union
-from dataclasses import dataclass
 import numpy as np
 
 
-@dataclass(frozen=True)
 class SVar:
     """Metadata for single state variable.
     """
-    name: str
-    drift: str
-    diffs: Union[str, float]
-    limit: Tuple[float, float]
+    def __init__(self, name, drift, diffs, limit):
+        self.name = name
+        self.drift = drift
+        self.diffs = diffs
+        self.limit = limit
 
 
-@dataclass(frozen=True)
 class Model:
     """Metadata for mass model.
     """
-    name: str
-    input: List[str]
-    param: List[str]
-    obsrv: List[str]
-    const: Dict[str, float]
-    auxex: List[Tuple[str, str]]
-    state_space: List[SVar]
-    descr: str = ""
+    def __init__(self, name, input, param, obsrv, const, auxex, state_space, descr=""):
+        self.name = name
+        self.input = input
+        self.param = param
+        self.obsrv = obsrv
+        self.const = const
+        self.auxex = auxex
+        self.state_space = state_space
+        self.descr = descr
 
 
 test_model = Model(
@@ -99,6 +97,12 @@ hmje = Model(
     obsrv=['x1', 'x2', 'z', '-x1 + x2'],
     const={'Iext2': 0.45, 'a': 1.0, 'b': 3.0, 'slope': 0.0, 'tt': 1.0, 'c': 1.0, 'd': 5.0, 'Kvf': 0.0, 'Ks': 0.0, 'Kf': 0.0, 'aa': 6.0, 'tau': 10.0, 'x0': -1.6, 'Iext': 3.1, 'r': 0.00035},
     state_space=[
+        # TODO structure if-else to generate ConditionalDerivedVariable
+
+        # d/dt x1 = tt * (...)
+
+        # x1_{t+1} = x1_{t} + dt * (tt * (...))
+
         SVar('x1', 'tt * (y1 - z + Iext + Kvf * c1 + (  (x1 <  0)*(-a * x1 * x1 + b * x1)+ (x1 >= 0)*(slope - x2 + 0.6 * (z - 4)**2)) * x1)', 0, (-2, 1)),
         SVar('y1', 'tt * (c - d * x1 * x1 - y1)', 0, (20, 2)),
         SVar('z', 'tt * (r * (4 * (x1 - x0) - z +  Ks * c1))', 0, (2, 5)),
