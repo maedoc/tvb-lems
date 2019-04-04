@@ -1,40 +1,37 @@
 <?xml version="1.0" ?>
 <Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
   <Dimension name="time" t="1"/>
-  <Dimension name="au"/>
   <ComponentType name="jansenrit">
-    <Parameter dimension="au" name="v0"/>
-    <Parameter dimension="au" name="r"/>
-    <Constant name="A" value="au"/>
-    <Constant name="B" value="au"/>
-    <Constant name="a" value="au"/>
-    <Constant name="b" value="au"/>
-    <Constant name="v0" value="au"/>
-    <Constant name="nu_max" value="au"/>
-    <Constant name="r" value="au"/>
-    <Constant name="J" value="au"/>
-    <Constant name="a_1" value="au"/>
-    <Constant name="a_2" value="au"/>
-    <Constant name="a_3" value="au"/>
-    <Constant name="a_4" value="au"/>
-    <Constant name="mu" value="au"/>
-    <Exposure dimension="au" name="y0 - y1"/>
+    <Parameter dimension="none" name="A"/>
+    <Parameter dimension="none" name="a"/>
+    <Parameter dimension="none" name="r"/>
+    <Parameter dimension="none" name="B"/>
+    <Parameter dimension="none" name="a_3"/>
+    <Parameter dimension="none" name="a_2"/>
+    <Parameter dimension="none" name="a_1"/>
+    <Parameter dimension="none" name="J"/>
+    <Parameter dimension="none" name="v0"/>
+    <Parameter dimension="none" name="mu"/>
+    <Parameter dimension="none" name="a_4"/>
+    <Parameter dimension="none" name="b"/>
+    <Parameter dimension="none" name="nu_max"/>
+    <Exposure dimension="none" name="y0 - y1"/>
     <Dynamics>
-      <StateVariable dimension="au" exposure="y0" name="y0"/>
-      <StateVariable dimension="au" exposure="y1" name="y1"/>
-      <StateVariable dimension="au" exposure="y2" name="y2"/>
-      <StateVariable dimension="au" exposure="y3" name="y3"/>
-      <StateVariable dimension="au" exposure="y4" name="y4"/>
-      <StateVariable dimension="au" exposure="y5" name="y5"/>
-      <DerivedVariable name="sigm_y1_y2" value="2 * nu_max / (1 + exp(r * (v0 - (y1 - y2))))"/>
+      <StateVariable dimension="none" exposure="y1" name="y1"/>
+      <StateVariable dimension="none" exposure="y0" name="y0"/>
+      <StateVariable dimension="none" exposure="y3" name="y3"/>
+      <StateVariable dimension="none" exposure="y2" name="y2"/>
+      <StateVariable dimension="none" exposure="y5" name="y5"/>
+      <StateVariable dimension="none" exposure="y4" name="y4"/>
       <DerivedVariable name="sigm_y0_1" value="2 * nu_max / (1 + exp(r * (v0 - (a_1 * J * y0))))"/>
+      <DerivedVariable name="sigm_y1_y2" value="2 * nu_max / (1 + exp(r * (v0 - (y1 - y2))))"/>
       <DerivedVariable name="sigm_y0_3" value="2 * nu_max / (1 + exp(r * (v0 - (a_3 * J * y0))))"/>
-      <TimeDerivative value="y3" variable="y0"/>
       <TimeDerivative value="y4" variable="y1"/>
-      <TimeDerivative value="y5" variable="y2"/>
+      <TimeDerivative value="y3" variable="y0"/>
       <TimeDerivative value="A * a * sigm_y1_y2 - 2 * a * y3 - a^2 * y0" variable="y3"/>
-      <TimeDerivative value="A * a * (mu + a_2 * J * sigm_y0_1 + lrc) - 2 * a * y4 - a^2 * y1" variable="y4"/>
+      <TimeDerivative value="y5" variable="y2"/>
       <TimeDerivative value="B * b * (a_4 * J * sigm_y0_3) - 2 * b * y5 - b^2 * y2" variable="y5"/>
+      <TimeDerivative value="A * a * (mu + a_2 * J * sigm_y0_1 + lrc) - 2 * a * y4 - a^2 * y1" variable="y4"/>
     </Dynamics>
   </ComponentType>
 </Lems>
