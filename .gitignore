@@ -1,2 +1,8 @@
 venv
 tvb_lems/__pycache__.idea
+/tvb_lems/*_nrn.py
+/tvb_lems/__pycache__
+/tvb_lems/*.mod
+/tvb_lems/*.pyc
+
+/tvb_lems/x86_64
