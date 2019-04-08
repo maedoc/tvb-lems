@@ -17,7 +17,7 @@
     <kuramoto id="k1" omega="0.1"/>
 
 
-    <pulseGeneratorDL id="pg0" delay="100ms" duration="800ms" amplitude="1" />
+    <pulseGeneratorDL id="pg0" delay="500ms" duration="100ms" amplitude="0.2" />
     
     <network id="net1">
         <population id="Pop1" component="k1" size="1" />
@@ -30,7 +30,7 @@
     <Simulation id="sim1" length="1s" step="0.01ms" target="net1">
 
         <Display id="d1" title="Ex   LEMS" timeScale="1s" xmin="-0.1" xmax="1.1" ymin="-2.5" ymax="12.5">
-            <Line id="theta" quantity="Pop1[0]/theta" scale="1" color="#ee40FF" timeScale="1" />
+            <Line id="theta" quantity="Pop1[0]/sin_theta" scale="1" color="#ee40FF" timeScale="1" />
             <Line id="I" quantity="Pop1[0]/I" scale="1" color="#aaaaFF" timeScale="1" />
         </Display>
     
