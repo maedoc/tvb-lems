@@ -17,8 +17,8 @@
     <Dynamics>
       <StateVariable dimension="none" exposure="S" name="S"/>
       <StateVariable dimension="voltage" exposure="v" name="v"/>
-      <DerivedVariable name="x" value="w * J * S + io + J * c"/>
       <DerivedVariable dimension="none" exposure="c" name="c" reduce="add" select="synapses[*]/I"/>
+      <DerivedVariable name="x" value="w * J * S + io + J * c"/>
       <DerivedVariable exposure="S" name="S" value="S"/>
       <DerivedVariable name="h" value="(a * x - b) / (1 - exp(-d*(a*x - b)))"/>
       <TimeDerivative value="(- (S / ts) + (1 - S) * h * g)/MSEC" variable="S"/>

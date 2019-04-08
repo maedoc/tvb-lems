@@ -4,6 +4,7 @@
   <ComponentType extends="baseCellMembPot" name="kuramoto">
     <Parameter dimension="none" name="omega"/>
     <Constant dimension="time" name="MSEC" value="1ms"/>
+    <Constant dimension="none" name="pi2" value="6.283185307179586" />
     <Attachments name="synapses" type="basePointCurrentDL"/>
     <Exposure dimension="none" name="I"/>
     <Exposure dimension="none" name="theta"/>
@@ -16,6 +17,9 @@
       <TimeDerivative value="(omega + I)/MSEC" variable="theta"/>
       <OnCondition test="v .gt. 0">
         <EventOut port="spike"/>
+      </OnCondition>
+      <OnCondition test="theta .gt. pi2">
+        <StateAssignment variable="theta" value="0.0" />
       </OnCondition>
     </Dynamics>
   </ComponentType>

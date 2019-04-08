@@ -12,8 +12,7 @@
     
     <Include file="rww.lems.xml" />
 
-
-    <pulseGeneratorDL id="pg0" delay="50ms" duration="1000ms" amplitude="100" />
+    <pulseGeneratorDL id="pg0" delay="50ms" duration="1000ms" amplitude="0.5" />
 
     <rww id="rww1" a="0.27" b="0.108" d="154.0" g="0.641" ts="100.0" J="0.2609" w="0.6" io="0.33"/>
 
