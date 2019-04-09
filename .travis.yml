@@ -7,4 +7,4 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pytest -m tvb_lems.tests
+  - pytest tvb_lems/tests.py
