@@ -1,12 +1,26 @@
 <?xml version="1.0" ?>
 <Lems xmlns="http://www.neuroml.org/lems/0.7.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.3 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.3.xsd">
   <Dimension name="time" t="1"/>
-  <ComponentType name="kuramoto">
+  <ComponentType extends="baseCellMembPot" name="kuramoto">
     <Parameter dimension="none" name="omega"/>
-    <Exposure dimension="none" name="sin(theta)"/>
+    <Constant dimension="time" name="MSEC" value="1ms"/>
+    <Constant dimension="none" name="pi2" value="6.283185307179586" />
+    <Attachments name="synapses" type="basePointCurrentDL"/>
+    <Exposure dimension="none" name="I"/>
+    <Exposure dimension="none" name="theta"/>
+    <Exposure dimension="none" name="sin_theta"/>
     <Dynamics>
       <StateVariable dimension="none" exposure="theta" name="theta"/>
-      <TimeDerivative value="omega + I" variable="theta"/>
+      <StateVariable dimension="voltage" exposure="v" name="v"/>
+      <DerivedVariable dimension="none" exposure="I" name="I" reduce="add" select="synapses[*]/I"/>
+      <DerivedVariable exposure="sin_theta" name="sin_theta" value="sin(theta)"/>
+      <TimeDerivative value="(omega + I)/MSEC" variable="theta"/>
+      <OnCondition test="v .gt. 0">
+        <EventOut port="spike"/>
+      </OnCondition>
+      <OnCondition test="theta .gt. pi2">
+        <StateAssignment variable="theta" value="0.0" />
+      </OnCondition>
     </Dynamics>
   </ComponentType>
 </Lems>
