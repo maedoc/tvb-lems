@@ -29,12 +29,15 @@
     <Simulation id="sim1" length="5s" step="1ms" target="net1">
 
         <Display id="d1" title="Ex   LEMS" timeScale="1s" xmin="-100" xmax="5000" ymin="-2.5" ymax="2.5">
-            <Line id="V" quantity="Pop1[0]/V" scale="1" color="#ee40FF" timeScale="1ms" />
-            <Line id="V" quantity="Pop1[1]/V" scale="1" color="#ee40FF" timeScale="1ms" />
-            <Line id="V" quantity="Pop1[2]/V" scale="1" color="#ee40FF" timeScale="1ms" />
+            <Line id="V0" quantity="Pop1[0]/V" scale="1" color="#ee40FF" timeScale="1ms" />
+            <Line id="V1" quantity="Pop1[1]/V" scale="1" color="#ee40FF" timeScale="1ms" />
+            <Line id="V2" quantity="Pop1[2]/V" scale="1" color="#ee40FF" timeScale="1ms" />
 <!--            <Line id="W" quantity="Pop1[0]/W" scale="1" color="#aaa0FF" timeScale="1ms" />-->
         </Display>
-    
+
+        <OutputFile id="of1" fileName="results_g2do.dat">
+            <OutputColumn id="o0" quantity="Pop1[0]/V"/>
+        </OutputFile>
 
     </Simulation>
 
