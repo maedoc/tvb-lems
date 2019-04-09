@@ -7,4 +7,4 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pynml -validate tvb_lems/LEMS_TestG2DO.xml
+  - pynml -nogui tvb_lems/LEMS_TestG2DO.xml
