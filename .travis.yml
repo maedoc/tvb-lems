@@ -5,3 +5,6 @@ python: 2.7
 install:
   - pip install Cython numpy
   - pip install -r requirements.txt
+
+script:
+  - pynml tvb_lems/LEMS_TestG2DO.xml
